@@ -1,5 +1,5 @@
 /***
- * Task: When the program is run, the user will first enter a string. After that, the program shouldask the user which operation they want to execute on the string.
+ * Task: When the program is run, the user will first enter a string. After that, the program should ask the user which operation they want to execute on the string.
   		The available operations are listed below: 
   		Append, CountWords, Replace, isPalindrome, Splice, Split, MaxRepeatingCharacter, Sort, Shift, and Reverse. 
   		Each method should perform its respective operation based on the user's input.
@@ -7,6 +7,7 @@
  * Created : 4/9/24
  */
 		
+
 
 package com.Studyopedia;
 
@@ -66,30 +67,36 @@ public class MultiProgram {
             }
         }
     }
-    public static char maxRepeat(String CurrString) {
+    public static char maxRepeat(String userInput) {
     	if (CurrString.length() == 0) {
             System.out.println("Current string is empty. Cannot determine the most frequent character.");
             return '\0'; 
-        }
+    	}
+            int maxCount = 0;  
+            char maxChar = ' '; 
+       
+            for (int i = 0; i < userInput.length(); i++) {
+                char currentChar = userInput.charAt(i);
+                int count = 0;
 
-        int[] frequency = new int[256]; 
-        char maxChar = '\0'; 
-        int maxCount = 0; 
+                
+                for (int j = 0; j < userInput.length(); j++) {
+                    if (userInput.charAt(j) == currentChar) {
+                        count++;
+                    }
+                }
 
-        
-        for (int i = 0; i < CurrString.length(); i++) {
-            char c = CurrString.charAt(i);
-            frequency[c]++;
-
-            
-            if (frequency[c] > maxCount) {
-                maxCount = frequency[c];
-                maxChar = c;
+                
+                if (count > maxCount) {
+                    maxCount = count;
+                    maxChar = currentChar;
+                }
             }
-        }
 
-        System.out.println("Character '" + maxChar + "' appears the most: " + maxCount + " times");
-        return maxChar;
+           
+            System.out.println(maxChar + " -> " + maxCount);
+
+            return maxChar;
     }
     
     public static int countWords(String input) {
@@ -99,18 +106,18 @@ public class MultiProgram {
         }
 
         int wordCount = 0;
-        boolean isWord = false;
+        boolean EndingWord = false;
         int endOfLine = input.length() - 1;
 
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) != ' ') {
-                isWord = true;
-            } else if (input.charAt(i) == ' ' && isWord) {
+            	EndingWord = true;
+            } else if (input.charAt(i) == ' ' && EndingWord) {
                 wordCount++;
-                isWord = false;
+                EndingWord = false;
             }
 
-            if (i == endOfLine && isWord) {
+            if (i == endOfLine && EndingWord) {
                 wordCount++;
             }
         }
@@ -118,8 +125,166 @@ public class MultiProgram {
         System.out.println("Total word count: " + wordCount);
         return wordCount;
     }
+    
+    public static String Splice(String str, int start, int length) {
+        
+        if (start < 0 || start >= str.length() || length < 0 || start + length > str.length()) {
+            return "Invalid parameters";
+        }
+        
+        String result = "";        
+        
+        for (int i = 0; i < start; i++) {
+            result += str.charAt(i);
+        }      
+        
+        for (int i = start + length; i < str.length(); i++) {
+            result += str.charAt(i);
+        }
+        
+        return result;
+    }
 
+    public static void modifyString(String mainString, String toReplace, String replaceWith)
+    {
+      
+      String newString = "";      
+      for (int i = 0; i < mainString.length(); i++) {   
+        int k = 0;       
+        
+        if (mainString.charAt(i) == toReplace.charAt(k)
+            && i + toReplace.length() <= mainString.length()) {
+        	
+          int j;
+          for (j = i; j < i + toReplace.length(); j++) {   
+            if (mainString.charAt(j) != toReplace.charAt(k)) {
+              break;
+            }
+            else {
+              k = k + 1;
+            }
+          }   
+          if (j == i + toReplace.length()) {
+        	  newString += (toReplace);
+            i = j - 1;
+          }        
+          else {
+        	  newString += (mainString.charAt(i));
+          }
+        }    
+        else {
+        	newString += (mainString.charAt(i));
+        }
+      }      
+      System.out.println("New string :" + newString);
+    }
+    
+    public static String[] split(String str, char delimiter) {
+        
+        int wordCount = 1;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == delimiter) {
+                wordCount++;
+            }
+        }
+        
+    
+        String[] result = new String[wordCount];
+        int wordIndex = 0;
+        int startIndex = 0;
+        
+        
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == delimiter) {
+                result[wordIndex] = str.substring(startIndex, i);
+                wordIndex++;
+                startIndex = i + 1;
+            }
+        }
+        
+        
+        result[wordIndex] = str.substring(startIndex);
+        
+        return result;
+    }
+   
+    public static String Split(String s) {
+        if (s == null || s.isEmpty()) {
+            return "";
+        }
 
+        int start = 0;
+        int end = 0;
+        StringBuilder result = new StringBuilder();
+
+        for (end = 0; end < s.length(); end++) {
+            if (s.charAt(end) == ' ' || end == s.length() - 1) {
+                if (end > start) {
+                    
+                    result.append(s.substring(start, end));
+                    
+                    if (end < s.length() - 1) {
+                        result.append(", ");
+                    }
+                }
+                start = end + 1;
+            }
+        }
+
+        
+        if (start < s.length()) {
+            result.append(s.substring(start));
+        }
+
+        return result.toString();
+    }
+    
+    public static String shift(String s, int n) {
+        if (s == null || s.isEmpty() || n < 0 || n >= s.length()) {
+            
+            return s;
+        }
+
+        int length = s.length();
+        char[] result = new char[length];
+
+       
+        int index = 0;
+        for (int i = n; i < length; i++) {
+            result[index++] = s.charAt(i);
+        }
+
+      
+        for (int i = 0; i < n; i++) {
+            result[index++] = s.charAt(i);
+        }
+
+        return new String(result);
+    }
+    public static String Shift(String input, int position) {
+        char chars[] = input.toCharArray();
+        int length = input.length();
+        position = position % length; 
+        position = length - position; 
+
+        reverseForShift(chars, 0, position - 1);    
+        reverseForShift(chars, position, length - 1);    
+        reverseForShift(chars, 0, length - 1);    
+
+        return new String(chars);
+    }
+
+    public static void reverseForShift(char[] chars, int start, int end) {
+        while (start < end) {
+            char temp = chars[start];
+            chars[start] = chars[end];
+            chars[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    
     
     public static void User_handle(String User_choice) {
     	Scanner sc = new Scanner(System.in);
@@ -192,21 +357,61 @@ public class MultiProgram {
             countWords(User_input); 
             break;
 //
-//        case "7":
-//            operation7();
-//            break;
+        case "7":
+        	Scanner rString = new Scanner(System.in);
+           System.out.println("Enter main string:");
+           String mainString = rString.nextLine();
+           System.out.println("Enter the substring to replace:");
+           String toReplace = rString.nextLine();
+           System.out.println("Enter string to replace with:");
+           String replaceWith = rString.nextLine();
+           modifyString( mainString,  toReplace,  replaceWith);
+            break;
 //
-//        case "8":
-//            operation8();
-//            break;
+        case "8":
+        	Scanner input = new Scanner(System.in);
+            System.out.println("Enter string to splice: ");
+            String str = input.nextLine();
+            
+            System.out.println("Give the starting index: ");
+            int start = input.nextInt();
+            
+            System.out.println("How many characters to splice : ");
+            int length = input.nextInt();
+            
+            System.out.println("Spliced string :" + Splice(str, start, length));
+            break;
 //
-//        case "9":
-//            operation9();
-//            break;
-//
-//        case "10":
-//            operation10();
-//            break;
+        case "9":
+        	Scanner scanner = new Scanner(System.in);
+
+            
+            System.out.println("Enter the string to be split:");
+            String words = scanner.nextLine();
+
+            
+
+          
+            System.out.println("Result:" + Split(words));
+            
+            break;
+
+        case "10":       
+            
+            Scanner shiftop = new Scanner(System.in);
+            System.out.println("Enter the string to be shifted:");
+            String string = shiftop.nextLine();
+
+            System.out.println("Enter the number of characters to shift:");
+            int shiftCount = shiftop.nextInt();
+
+          
+            String result = Shift(string, shiftCount);
+
+            
+            System.out.println("Shifted result:");
+            System.out.println(result);
+            break;
 
         case "exit":
             System.out.println("Exiting...");
@@ -233,10 +438,10 @@ public class MultiProgram {
             System.out.println("4. Find the max character fequency");
             System.out.println("5. Find Palindrome");
             System.out.println("6. Count the words in the string.");
-            System.out.println("7. Operation 7");
-            System.out.println("8. Operation 8");
-            System.out.println("9. Operation 9");
-            System.out.println("10. Operation 10");
+            System.out.println("7. Replace a substring");
+            System.out.println("8. Splice");
+            System.out.println("9. Split");
+            System.out.println("10. Shift");
             System.out.println("Type 'exit' to quit");
 
             User_choice = sc.nextLine();
