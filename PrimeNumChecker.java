@@ -1,3 +1,4 @@
+package com.Studyopedia;
 /***
  * Task 3: Prime Number Checker
  * Write a Java program to determine if a given integer is a prime number.
@@ -13,7 +14,6 @@
 
 
 
-package com.Studyopedia;
 
 import java.util.Scanner;
 
@@ -43,4 +43,3 @@ public class PrimeNumChecker {
         return true;
     }
 }
-

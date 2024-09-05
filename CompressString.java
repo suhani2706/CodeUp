@@ -48,7 +48,8 @@ public class CompressString {
         System.out.println(Inputs.String_Compression);
         String input = scanner.nextLine();        
         String result = compressString(input);        
-        System.out.println("Compressed String: " + result);        
-        scanner.close();
+        System.out.println("Compressed String: " + result); 
+       
+        
     }
 }
