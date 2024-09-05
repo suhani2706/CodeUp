@@ -179,34 +179,7 @@ public class MultiProgram {
       System.out.println("New string :" + newString);
     }
     
-    public static String[] split(String str, char delimiter) {
-        
-        int wordCount = 1;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == delimiter) {
-                wordCount++;
-            }
-        }
-        
     
-        String[] result = new String[wordCount];
-        int wordIndex = 0;
-        int startIndex = 0;
-        
-        
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == delimiter) {
-                result[wordIndex] = str.substring(startIndex, i);
-                wordIndex++;
-                startIndex = i + 1;
-            }
-        }
-        
-        
-        result[wordIndex] = str.substring(startIndex);
-        
-        return result;
-    }
    
     public static String Split(String s) {
         if (s == null || s.isEmpty()) {
@@ -239,28 +212,7 @@ public class MultiProgram {
         return result.toString();
     }
     
-    public static String shift(String s, int n) {
-        if (s == null || s.isEmpty() || n < 0 || n >= s.length()) {
-            
-            return s;
-        }
-
-        int length = s.length();
-        char[] result = new char[length];
-
-       
-        int index = 0;
-        for (int i = n; i < length; i++) {
-            result[index++] = s.charAt(i);
-        }
-
-      
-        for (int i = 0; i < n; i++) {
-            result[index++] = s.charAt(i);
-        }
-
-        return new String(result);
-    }
+   
     public static String Shift(String input, int position) {
     	
     	if (position < 0) {
