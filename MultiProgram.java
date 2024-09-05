@@ -17,7 +17,8 @@ public class MultiProgram {
 
     
     private static String CurrString = ""; 
-    
+
+    // Check Palindrome
     public static boolean isPalindrome(String input) {
         int i = 0;
         int j = input.length() - 1;
@@ -32,13 +33,15 @@ public class MultiProgram {
         
         return true;
     }
-    
+    // Append Strings
     public static void append(String newString) {
         if (CurrString.length() > 0) {
         	CurrString += " ";  
         }
         CurrString += newString;
     }
+
+   //Reverse a string
     public static String ReverseString(String s){     
         
         String reveString = "";
@@ -47,12 +50,13 @@ public class MultiProgram {
         }        
         return reveString;
     }
+
+    //Sort string	
     public static String sort(String s) {
         char[] ch = s.toCharArray(); 
         bubbleSort(ch); 
         return new String(ch); 
     }
-
     private static void bubbleSort(char[] arr) {
         int n = arr.length;
         char temp;
@@ -67,6 +71,8 @@ public class MultiProgram {
             }
         }
     }
+	
+   //Find the maximum repeated character
     public static char maxRepeat(String userInput) {
     	if (CurrString.length() == 0) {
             System.out.println("Current string is empty. Cannot determine the most frequent character.");
@@ -91,14 +97,12 @@ public class MultiProgram {
                     maxCount = count;
                     maxChar = currentChar;
                 }
-            }
-
-           
+	    }           
             System.out.println(maxChar + " -> " + maxCount);
-
             return maxChar;
     }
-    
+  	
+  //Count the words in a string  
     public static int countWords(String input) {
         if (input.length() == 0) {
             System.out.println("The input string is empty. Word count is 0.");
@@ -121,30 +125,27 @@ public class MultiProgram {
                 wordCount++;
             }
         }
-
         System.out.println("Total word count: " + wordCount);
         return wordCount;
     }
-    
+
+   //Spice string	
     public static String Splice(String str, int start, int length) {
         
         if (start < 0 || start >= str.length() || length < 0 || start + length > str.length()) {
             return "Invalid parameters";
-        }
-        
-        String result = "";        
-        
+        }        
+        String result = "";             
         for (int i = 0; i < start; i++) {
             result += str.charAt(i);
-        }      
-        
+        }              
         for (int i = start + length; i < str.length(); i++) {
             result += str.charAt(i);
-        }
-        
+        }        
         return result;
     }
 
+    //Replace substring	
     public static void modifyString(String mainString, String toReplace, String replaceWith)
     {
       
@@ -178,9 +179,8 @@ public class MultiProgram {
       }      
       System.out.println("New string :" + newString);
     }
-    
-    
-   
+       
+   // Split a string into array
     public static String Split(String s) {
         if (s == null || s.isEmpty()) {
             return "";
@@ -212,7 +212,7 @@ public class MultiProgram {
         return result.toString();
     }
     
-   
+   // Shift the characters in a string
     public static String Shift(String input, int position) {
     	
     	if (position < 0) {
@@ -230,7 +230,6 @@ public class MultiProgram {
 
         return new String(chars);
     }
-
     public static void reverseForShift(char[] chars, int start, int end) {
         while (start < end) {
             char temp = chars[start];
@@ -242,7 +241,7 @@ public class MultiProgram {
     }
 
     
-    
+    // User handle function to run the switch-case
     public static void User_handle(String User_choice) {
     	Scanner sc = new Scanner(System.in);
     	String User_input;
