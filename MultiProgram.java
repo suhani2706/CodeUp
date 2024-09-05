@@ -262,6 +262,11 @@ public class MultiProgram {
         return new String(result);
     }
     public static String Shift(String input, int position) {
+    	
+    	if (position < 0) {
+            System.out.println("Warning: Negative shift value entered. Returning the original string.");
+            return input; 
+        }
         char chars[] = input.toCharArray();
         int length = input.length();
         position = position % length; 
