@@ -1,7 +1,7 @@
 /***
  * Task: When the program is run, the user will first enter a string. After that, the program should ask the user which operation they want to execute on the string.
   		The available operations are listed below: 
-  		Append, CountWords, Replace, isPalindrome, Splice, Split, MaxRepeatingCharacter, Sort, Shift, and Reverse. 
+  		->Append, CountWords, Replace, isPalindrome, Splice, Split, MaxRepeatingCharacter, Sort, Shift, and Reverse. 
   		Each method should perform its respective operation based on the user's input.
  * Owner : Suhani Mathur
  * Created : 4/9/24
